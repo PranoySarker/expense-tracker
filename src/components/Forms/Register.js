@@ -38,6 +38,7 @@ const Login = () => {
               <h4 className="max-w-xs font-heading text-3xl sm:text-4xl mt-2">
                 Register Account
               </h4>
+              {/* Error message */}
               {userAuth?.error?.message && (
                 <h2 className="text-red-500 text-center">
                   {" "}
