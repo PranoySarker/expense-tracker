@@ -12,7 +12,9 @@ const initialState = {
   userAuth: {
     loading: false,
     error: null,
-    userInfo: {},
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
   },
 };
 
@@ -66,7 +68,7 @@ export const loginUserAction = createAsyncThunk(
         config
       );
       // save user info to localstorage
-      localStorage.setItem("User Info", JSON.stringify(res.data));
+      localStorage.setItem("userInfo", JSON.stringify(res.data));
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
