@@ -27,7 +27,9 @@ const Login = () => {
   const { loading, userAuth } = useSelector((state) => {
     return state?.users;
   });
-  console.log(loading, userAuth);
+  if (userAuth?.userInfo?.status) {
+    window.location.href = "/login";
+  }
   return (
     <>
       <section className="relative py-16 bg-gray-50">

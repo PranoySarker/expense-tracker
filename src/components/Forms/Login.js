@@ -29,6 +29,11 @@ const Login = () => {
     return state.users;
   });
 
+  // redirect to dashboard after login
+  if (userAuth?.userInfo?.status) {
+    window.location.href = "/dashboard";
+  }
+
   return (
     <>
       <section className="relative py-16 bg-gray-50">
