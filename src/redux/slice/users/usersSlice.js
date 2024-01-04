@@ -83,6 +83,28 @@ export const logoutUserAction = createAsyncThunk("user/logout", async () => {
   return null;
 });
 
+// get profile action
+export const getProfileAction = createAsyncThunk(
+  "user/getProfile",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    try {
+      // get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+      // pass the token to the header
+      const config = {
+        header: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      // make the request
+      const { data } = await axios.get(`${baseURL}/users/profile`, config);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data.message);
+    }
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
